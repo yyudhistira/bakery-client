@@ -36,8 +36,23 @@ class BakeryClientTest {
 
         // WHEN
         URI uri = bakeryClient.saveNewBread(newBread);
+        BreadDto breadDto = bakeryClient.saveNewBreadAsObject(newBread);
 
         // THEN
-        assertNotNull(uri);
+        assertNotNull(breadDto);
+    }
+
+    @Test
+    void updateBread() {
+        // GIVEN
+        BreadDto breadDto = BreadDto.builder()
+            .breadName("Updated bread")
+            .build();
+
+        // WHEN
+        bakeryClient.updateBread(UUID.randomUUID(), breadDto);
+
+        // THEN
+
     }
 }

@@ -29,6 +29,14 @@ public class BakeryClient {
         return restTemplate.postForLocation(apihost + BREAD_PATH_V1, breadDto);
     }
 
+    public BreadDto saveNewBreadAsObject(BreadDto breadDto) {
+        return restTemplate.postForObject(apihost + BREAD_PATH_V1, breadDto, BreadDto.class);
+    }
+
+    public void updateBread(UUID uuid, BreadDto breadDto) {
+        restTemplate.put(apihost + BREAD_PATH_V1 + "/" + uuid.toString(), breadDto);
+    }
+
     public void setApihost(String apihost) {
         this.apihost = apihost;
     }
