@@ -2,6 +2,7 @@ package net.yasri.bakeryclient.web.client;
 
 import net.yasri.bakeryclient.web.model.BreadDto;
 import net.yasri.bakeryclient.web.model.BreadStyleEnum;
+import net.yasri.bakeryclient.web.model.CustomerDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -61,4 +62,49 @@ class BakeryClientTest {
 
         // THEN
     }
+
+    @Test
+    void getCustomerById() {
+        // WHEN
+        CustomerDto customerDto = bakeryClient.getCustomerById(UUID.randomUUID());
+
+        // THEN
+        assertNotNull(customerDto);
+    }
+
+    @Test
+    void saveNewCustomer() {
+        // GIVEN
+        CustomerDto customerDto = CustomerDto.builder()
+            .name("New Customer")
+            .build();
+
+        // WHEN
+        URI newCustomer = bakeryClient.saveNewCustomer(customerDto);
+
+        // THEN
+        assertNotNull(newCustomer);
+    }
+
+    @Test
+    void updateCustomer() {
+        // GIVEN
+        CustomerDto customerDto = CustomerDto.builder()
+            .name("New Customer")
+            .build();
+
+        // WHEN
+        bakeryClient.updateCustomer(UUID.randomUUID(), customerDto);
+
+        // THEN
+    }
+
+    @Test
+    void deleteCustomer() {
+        // WHEN
+        bakeryClient.deleteCustomer(UUID.randomUUID());
+
+        // THEN
+    }
+
 }
