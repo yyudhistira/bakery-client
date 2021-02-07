@@ -15,15 +15,15 @@ import java.util.UUID;
 @Builder
 public class BreadDto {
     private UUID id;
-//    private Integer version;
+    private Integer version;
 
-//    private OffsetDateTime createdDate;
-//    private OffsetDateTime lastModifiedDate;
+    private OffsetDateTime createdDate;
+    private OffsetDateTime lastModifiedDate;
 
     private String breadName;
-//    private BreadStyleEnum breadStyle;
-//    private Long upc;
+    private BreadStyleEnum breadStyle;
+    private Long upc;
 
-//    private BigDecimal price;
-//    private Integer quantityOnHand;
+    private BigDecimal price;
+    private Integer quantityOnHand;
 }

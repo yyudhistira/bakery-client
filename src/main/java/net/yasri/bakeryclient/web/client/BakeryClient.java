@@ -22,19 +22,19 @@ public class BakeryClient {
     }
 
     public BreadDto getBreadById(UUID uuid) {
-        return restTemplate.getForObject(apihost + BREAD_PATH_V1 + uuid.toString(), BreadDto.class);
+        return restTemplate.getForObject(apihost + BREAD_PATH_V1 + uuid, BreadDto.class);
     }
 
     public URI saveNewBread(BreadDto breadDto) {
         return restTemplate.postForLocation(apihost + BREAD_PATH_V1, breadDto);
     }
 
-    public BreadDto saveNewBreadAsObject(BreadDto breadDto) {
-        return restTemplate.postForObject(apihost + BREAD_PATH_V1, breadDto, BreadDto.class);
+    public void updateBread(UUID uuid, BreadDto breadDto) {
+        restTemplate.put(apihost + BREAD_PATH_V1 + "/" + uuid, breadDto);
     }
 
-    public void updateBread(UUID uuid, BreadDto breadDto) {
-        restTemplate.put(apihost + BREAD_PATH_V1 + "/" + uuid.toString(), breadDto);
+    public void deleteBread(UUID uuid) {
+        restTemplate.delete(apihost + BREAD_PATH_V1 + "/" + uuid);
     }
 
     public void setApihost(String apihost) {

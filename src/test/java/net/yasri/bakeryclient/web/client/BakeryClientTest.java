@@ -30,16 +30,15 @@ class BakeryClientTest {
         // GIVEN
         BreadDto newBread = BreadDto.builder()
             .breadName("New bread")
-//            .breadStyle(BreadStyleEnum.STUFFED)
-//            .upc(new Random().nextLong())
+            .breadStyle(BreadStyleEnum.STUFFED)
+            .upc(new Random().nextLong())
             .build();
 
         // WHEN
         URI uri = bakeryClient.saveNewBread(newBread);
-        BreadDto breadDto = bakeryClient.saveNewBreadAsObject(newBread);
 
         // THEN
-        assertNotNull(breadDto);
+        assertNotNull(uri);
     }
 
     @Test
@@ -53,6 +52,13 @@ class BakeryClientTest {
         bakeryClient.updateBread(UUID.randomUUID(), breadDto);
 
         // THEN
+    }
 
+    @Test
+    void deleteBread() {
+        // WHEN
+        bakeryClient.deleteBread(UUID.randomUUID());
+
+        // THEN
     }
 }
