@@ -2,7 +2,7 @@ package net.yasri.bakeryclient.web.client;
 
 import net.yasri.bakeryclient.web.model.BreadDto;
 import net.yasri.bakeryclient.web.model.CustomerDto;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -11,7 +11,6 @@ import java.net.URI;
 import java.util.UUID;
 
 @Component
-@ConfigurationProperties(value = "net.yasri", ignoreUnknownFields = false)
 public class BakeryClient {
     public final String BREAD_PATH_V1 = "/api/v1/bread/";
     private final String CUSTOMER_PATH_V1 = "/api/v1/customer";
@@ -19,7 +18,9 @@ public class BakeryClient {
 
     private final RestTemplate restTemplate;
 
-    public BakeryClient(RestTemplateBuilder restTemplateBuilder) {
+    public BakeryClient(@Value("${net.yasri.apihost}") String apihost,
+                        RestTemplateBuilder restTemplateBuilder) {
+        this.apihost = apihost;
         this.restTemplate = restTemplateBuilder.build();
     }
 
@@ -55,7 +56,4 @@ public class BakeryClient {
         restTemplate.delete(apihost + CUSTOMER_PATH_V1 + "/" + uuid);
     }
 
-    public void setApihost(String apihost) {
-        this.apihost = apihost;
-    }
 }
